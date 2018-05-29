@@ -26,30 +26,29 @@ EPOCHS          = 200
 
 class FC_LayerNet(torch.nn.Module):
     expected_layer_sizes = 3
-    def __init__(self, layer_szs, embedding_szs,  embedding_num, embedding_dim):
+    expected_numb_embeddings = 1
+    def __init__(self, layer_szs, embedding_szs):
         '''
         how to combine a bunch of inputs and feed into a neural net
         :param layer_szs: list of layer sizes, 1st entry is the input size, last is output size
         :param embedding_szs: list of embedding tuples, each tuple of type (num_unique_embedding, width_each_embedding)
 
-        :param D_in: width of input, in this case its the concatenation of the embedding with both x1_dim and x2_dim
-        :param H: number neurons in hidden layer
-        :param D_out: width of output
         :param embedding_num: number of embeddings
         :param embedding_dim: width of each
         '''
         super(FC_LayerNet, self).__init__()
 
         assert len(layer_sizes) == FC_LayerNet.expected_layer_sizes
+        assert len(embedding_szs) == FC_LayerNet.expected_numb_embeddings
 
+        embedding_num = embedding_szs[0][0]
+        embedding_dim = embedding_szs[0][1]
         self.embeddings = torch.nn.Embedding(embedding_num, embedding_dim)
 
         d_in = layer_sizes[0]
         d_H = layer_sizes[1]
         d_out = layer_sizes[2]
-
-        #7 inputs because x,y and 5 embeddings
-        self.input_linear  = torch.nn.Linear(d_in, d_H)
+        self.input_linear  = torch.nn.Linear(d_in, d_H) #7 inputs because x,y and 5 embeddings
         self.middle_linear = torch.nn.Linear(d_H,  d_H)
         self.output_linear = torch.nn.Linear(d_H,  d_out)
 
@@ -93,9 +92,9 @@ cat_days_index = [days_to_idx[day] for day in cat_days]             #N long list
 y = torch.randn(N, D_out, device=device)
 
 # the model
-
 layer_sizes = [D_in, H1, D_out]
-model = FC_LayerNet(layer_sizes, embedding_num = num_days,embedding_dim = embedding_dim )
+embedding_szs = [(num_days,embedding_dim)]
+model = FC_LayerNet(layer_sizes, embedding_szs = embedding_szs )
 if (device.type == 'cuda'):
     model.cuda()
 
@@ -109,6 +108,10 @@ loss_fn = torch.nn.MSELoss(size_average=False)
 # optimizer which Tensors it should update.
 learning_rate = 1e-3
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+#lets see what it looks like
+print(model)
+print(repr(model))
 
 for epoch in range(EPOCHS):
     total_loss = torch.Tensor([0])
