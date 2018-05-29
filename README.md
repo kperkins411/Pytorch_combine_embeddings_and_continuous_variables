@@ -3,9 +3,9 @@ Convert categorical variables into embeddings and concat them with with continuo
 
 Ref: [Justin Johnsons excellent pytorch introduction ](https://github.com/jcjohnson/pytorch-examples)
 
-This project builds on the above project using examples.  The most interesting one is [  ] (embeddings) since it concatenates both continuous and categorical variables (via embeddings) into an input for a fully connected neural network.  
+This project builds on the above project using examples.  The most interesting one is [multiple_inputs_embeddings_cats_batch.py]  (https://github.com/kperkins411/Pytorch_combine_embeddings_and_continuous_variables/blob/master/multiple_inputs_embeddings_cats_batch.py)  since it concatenates both continuous and categorical variables (via embeddings) into an input for a fully connected neural network.  
 
-Model summary for   
+Model summary for [multiple_inputs_embeddings_cats_batch.py]  (https://github.com/kperkins411/Pytorch_combine_embeddings_and_continuous_variables/blob/master/multiple_inputs_embeddings_cats_batch.py) 
 FC_LayerNet(<br>
    (embeddings): Embedding(7, 5)<br>
   (input_linear): Linear(in_features=18, out_features=300, bias=True)<br>
