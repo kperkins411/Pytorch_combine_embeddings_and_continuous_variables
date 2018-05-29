@@ -1,9 +1,7 @@
-# Pytorch how to combine embeddings and continuous variables
+# Pytorch- converting categorical variables into embeddings and concatenating them with other continuous variables to form an input to a neural network
 Ref: [Justin Johnsons excellent pytorch introduction ](https://github.com/jcjohnson/pytorch-examples)
 
-Convert categorical variables into embeddings and concatenate them with continuous variables that serve as input to a fully connected neural net.
-
-There are several examples in this project that demonstrate concatenating multiple inputs to feed a fully connected neural network.  The most interesting one is [multiple_inputs_embeddings_cats_batch.py](https://github.com/kperkins411/Pytorch_combine_embeddings_and_continuous_variables/blob/master/multiple_inputs_embeddings_cats_batch.py)  since it concatenates both continuous and categorical variables (via embeddings).
+There are several examples in this project that demonstrate concatenating multiple inputs (continuous and categorical) to feed a fully connected neural network.  The most interesting one is [multiple_inputs_embeddings_cats_batch.py](https://github.com/kperkins411/Pytorch_combine_embeddings_and_continuous_variables/blob/master/multiple_inputs_embeddings_cats_batch.py)  since it concatenates both continuous and categorical variables (via embeddings).
 
 ## Model summary for [multiple_inputs_embeddings_cats_batch.py](https://github.com/kperkins411/Pytorch_combine_embeddings_and_continuous_variables/blob/master/multiple_inputs_embeddings_cats_batch.py) <br>
 
